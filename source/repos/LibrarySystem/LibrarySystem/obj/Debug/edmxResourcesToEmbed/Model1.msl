@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbKutuphaneSyetemModelStoreContainer" CdmEntityContainer="DbKutuphaneSyetemEntities1">
+    <EntitySetMapping Name="islem">
+      <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.islem">
+        <MappingFragment StoreEntitySet="islem">
+          <ScalarProperty Name="islemno" ColumnName="islemno" />
+          <ScalarProperty Name="ogrno" ColumnName="ogrno" />
+          <ScalarProperty Name="kitapno" ColumnName="kitapno" />
+          <ScalarProperty Name="atarih" ColumnName="atarih" />
+          <ScalarProperty Name="vtarih" ColumnName="vtarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kitap">
+      <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.kitap">
+        <MappingFragment StoreEntitySet="kitap">
+          <ScalarProperty Name="kitapno" ColumnName="kitapno" />
+          <ScalarProperty Name="isbnno" ColumnName="isbnno" />
+          <ScalarProperty Name="kitapadi" ColumnName="kitapadi" />
+          <ScalarProperty Name="yazarno" ColumnName="yazarno" />
+          <ScalarProperty Name="turno" ColumnName="turno" />
+          <ScalarProperty Name="sayfasayisi" ColumnName="sayfasayisi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogrenci">
+      <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.ogrenci">
+        <MappingFragment StoreEntitySet="ogrenci">
+          <ScalarProperty Name="ogrno" ColumnName="ogrno" />
+          <ScalarProperty Name="ograd" ColumnName="ograd" />
+          <ScalarProperty Name="ograsoyad" ColumnName="ograsoyad" />
+          <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+          <ScalarProperty Name="dtarih" ColumnName="dtarih" />
+          <ScalarProperty Name="sinif" ColumnName="sinif" />
+          <ScalarProperty Name="puan" ColumnName="puan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tur">
+      <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.tur">
+        <MappingFragment StoreEntitySet="tur">
+          <ScalarProperty Name="turno" ColumnName="turno" />
+          <ScalarProperty Name="turadi" ColumnName="turadi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yazar">
+      <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.yazar">
+        <MappingFragment StoreEntitySet="yazar">
+          <ScalarProperty Name="yazarno" ColumnName="yazarno" />
+          <ScalarProperty Name="yazarad" ColumnName="yazarad" />
+          <ScalarProperty Name="yazarsoyad" ColumnName="yazarsoyad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

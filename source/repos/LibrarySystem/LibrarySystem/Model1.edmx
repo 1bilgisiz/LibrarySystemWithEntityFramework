@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbKutuphaneSyetemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="islem">
+          <Key>
+            <PropertyRef Name="islemno" />
+          </Key>
+          <Property Name="islemno" Type="int" Nullable="false" />
+          <Property Name="ogrno" Type="int" />
+          <Property Name="kitapno" Type="int" />
+          <Property Name="atarih" Type="datetimeoffset" Precision="7" />
+          <Property Name="vtarih" Type="datetimeoffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="kitap">
+          <Key>
+            <PropertyRef Name="kitapno" />
+          </Key>
+          <Property Name="kitapno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isbnno" Type="int" />
+          <Property Name="kitapadi" Type="varchar" MaxLength="50" />
+          <Property Name="yazarno" Type="int" />
+          <Property Name="turno" Type="int" />
+          <Property Name="sayfasayisi" Type="int" />
+        </EntityType>
+        <EntityType Name="ogrenci">
+          <Key>
+            <PropertyRef Name="ogrno" />
+          </Key>
+          <Property Name="ogrno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ograd" Type="varchar" MaxLength="50" />
+          <Property Name="ograsoyad" Type="varchar" MaxLength="50" />
+          <Property Name="cinsiyet" Type="varchar" MaxLength="50" />
+          <Property Name="dtarih" Type="datetimeoffset" Precision="7" />
+          <Property Name="sinif" Type="int" />
+          <Property Name="puan" Type="int" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="turno" />
+          </Key>
+          <Property Name="turno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turadi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="yazar">
+          <Key>
+            <PropertyRef Name="yazarno" />
+          </Key>
+          <Property Name="yazarno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yazarad" Type="varchar" MaxLength="50" />
+          <Property Name="yazarsoyad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_islem_kitap">
+          <End Role="kitap" Type="Self.kitap" Multiplicity="0..1" />
+          <End Role="islem" Type="Self.islem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kitap">
+              <PropertyRef Name="kitapno" />
+            </Principal>
+            <Dependent Role="islem">
+              <PropertyRef Name="kitapno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_islem_ogrenci">
+          <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="0..1" />
+          <End Role="islem" Type="Self.islem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenci">
+              <PropertyRef Name="ogrno" />
+            </Principal>
+            <Dependent Role="islem">
+              <PropertyRef Name="ogrno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitap_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="turno" />
+            </Principal>
+            <Dependent Role="kitap">
+              <PropertyRef Name="turno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitap_yazar">
+          <End Role="yazar" Type="Self.yazar" Multiplicity="0..1" />
+          <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yazar">
+              <PropertyRef Name="yazarno" />
+            </Principal>
+            <Dependent Role="kitap">
+              <PropertyRef Name="yazarno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbKutuphaneSyetemModelStoreContainer">
+          <EntitySet Name="islem" EntityType="Self.islem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kitap" EntityType="Self.kitap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ogrenci" EntityType="Self.ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tur" EntityType="Self.tur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yazar" EntityType="Self.yazar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_islem_kitap" Association="Self.FK_islem_kitap">
+            <End Role="kitap" EntitySet="kitap" />
+            <End Role="islem" EntitySet="islem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_islem_ogrenci" Association="Self.FK_islem_ogrenci">
+            <End Role="ogrenci" EntitySet="ogrenci" />
+            <End Role="islem" EntitySet="islem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitap_tur" Association="Self.FK_kitap_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="kitap" EntitySet="kitap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitap_yazar" Association="Self.FK_kitap_yazar">
+            <End Role="yazar" EntitySet="yazar" />
+            <End Role="kitap" EntitySet="kitap" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbKutuphaneSyetemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="islem">
+          <Key>
+            <PropertyRef Name="islemno" />
+          </Key>
+          <Property Name="islemno" Type="Int32" Nullable="false" />
+          <Property Name="ogrno" Type="Int32" />
+          <Property Name="kitapno" Type="Int32" />
+          <Property Name="atarih" Type="DateTimeOffset" Precision="7" />
+          <Property Name="vtarih" Type="DateTimeOffset" Precision="7" />
+          <NavigationProperty Name="kitap" Relationship="Self.FK_islem_kitap" FromRole="islem" ToRole="kitap" />
+          <NavigationProperty Name="ogrenci" Relationship="Self.FK_islem_ogrenci" FromRole="islem" ToRole="ogrenci" />
+        </EntityType>
+        <EntityType Name="kitap">
+          <Key>
+            <PropertyRef Name="kitapno" />
+          </Key>
+          <Property Name="kitapno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isbnno" Type="Int32" />
+          <Property Name="kitapadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yazarno" Type="Int32" />
+          <Property Name="turno" Type="Int32" />
+          <Property Name="sayfasayisi" Type="Int32" />
+          <NavigationProperty Name="islem" Relationship="Self.FK_islem_kitap" FromRole="kitap" ToRole="islem" />
+          <NavigationProperty Name="tur" Relationship="Self.FK_kitap_tur" FromRole="kitap" ToRole="tur" />
+          <NavigationProperty Name="yazar" Relationship="Self.FK_kitap_yazar" FromRole="kitap" ToRole="yazar" />
+        </EntityType>
+        <EntityType Name="ogrenci">
+          <Key>
+            <PropertyRef Name="ogrno" />
+          </Key>
+          <Property Name="ogrno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ograd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ograsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dtarih" Type="DateTimeOffset" Precision="7" />
+          <Property Name="sinif" Type="Int32" />
+          <Property Name="puan" Type="Int32" />
+          <NavigationProperty Name="islem" Relationship="Self.FK_islem_ogrenci" FromRole="ogrenci" ToRole="islem" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="turno" />
+          </Key>
+          <Property Name="turno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kitap" Relationship="Self.FK_kitap_tur" FromRole="tur" ToRole="kitap" />
+        </EntityType>
+        <EntityType Name="yazar">
+          <Key>
+            <PropertyRef Name="yazarno" />
+          </Key>
+          <Property Name="yazarno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yazarad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yazarsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kitap" Relationship="Self.FK_kitap_yazar" FromRole="yazar" ToRole="kitap" />
+        </EntityType>
+        <Association Name="FK_islem_kitap">
+          <End Role="kitap" Type="Self.kitap" Multiplicity="0..1" />
+          <End Role="islem" Type="Self.islem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kitap">
+              <PropertyRef Name="kitapno" />
+            </Principal>
+            <Dependent Role="islem">
+              <PropertyRef Name="kitapno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_islem_ogrenci">
+          <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="0..1" />
+          <End Role="islem" Type="Self.islem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenci">
+              <PropertyRef Name="ogrno" />
+            </Principal>
+            <Dependent Role="islem">
+              <PropertyRef Name="ogrno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitap_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="turno" />
+            </Principal>
+            <Dependent Role="kitap">
+              <PropertyRef Name="turno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitap_yazar">
+          <End Role="yazar" Type="Self.yazar" Multiplicity="0..1" />
+          <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yazar">
+              <PropertyRef Name="yazarno" />
+            </Principal>
+            <Dependent Role="kitap">
+              <PropertyRef Name="yazarno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbKutuphaneSyetemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="islem" EntityType="Self.islem" />
+          <EntitySet Name="kitap" EntityType="Self.kitap" />
+          <EntitySet Name="ogrenci" EntityType="Self.ogrenci" />
+          <EntitySet Name="tur" EntityType="Self.tur" />
+          <EntitySet Name="yazar" EntityType="Self.yazar" />
+          <AssociationSet Name="FK_islem_kitap" Association="Self.FK_islem_kitap">
+            <End Role="kitap" EntitySet="kitap" />
+            <End Role="islem" EntitySet="islem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_islem_ogrenci" Association="Self.FK_islem_ogrenci">
+            <End Role="ogrenci" EntitySet="ogrenci" />
+            <End Role="islem" EntitySet="islem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitap_tur" Association="Self.FK_kitap_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="kitap" EntitySet="kitap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitap_yazar" Association="Self.FK_kitap_yazar">
+            <End Role="yazar" EntitySet="yazar" />
+            <End Role="kitap" EntitySet="kitap" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbKutuphaneSyetemModelStoreContainer" CdmEntityContainer="DbKutuphaneSyetemEntities1">
+          <EntitySetMapping Name="islem">
+            <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.islem">
+              <MappingFragment StoreEntitySet="islem">
+                <ScalarProperty Name="islemno" ColumnName="islemno" />
+                <ScalarProperty Name="ogrno" ColumnName="ogrno" />
+                <ScalarProperty Name="kitapno" ColumnName="kitapno" />
+                <ScalarProperty Name="atarih" ColumnName="atarih" />
+                <ScalarProperty Name="vtarih" ColumnName="vtarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kitap">
+            <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.kitap">
+              <MappingFragment StoreEntitySet="kitap">
+                <ScalarProperty Name="kitapno" ColumnName="kitapno" />
+                <ScalarProperty Name="isbnno" ColumnName="isbnno" />
+                <ScalarProperty Name="kitapadi" ColumnName="kitapadi" />
+                <ScalarProperty Name="yazarno" ColumnName="yazarno" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="sayfasayisi" ColumnName="sayfasayisi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ogrenci">
+            <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.ogrenci">
+              <MappingFragment StoreEntitySet="ogrenci">
+                <ScalarProperty Name="ogrno" ColumnName="ogrno" />
+                <ScalarProperty Name="ograd" ColumnName="ograd" />
+                <ScalarProperty Name="ograsoyad" ColumnName="ograsoyad" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="dtarih" ColumnName="dtarih" />
+                <ScalarProperty Name="sinif" ColumnName="sinif" />
+                <ScalarProperty Name="puan" ColumnName="puan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tur">
+            <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.tur">
+              <MappingFragment StoreEntitySet="tur">
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="turadi" ColumnName="turadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yazar">
+            <EntityTypeMapping TypeName="DbKutuphaneSyetemModel.yazar">
+              <MappingFragment StoreEntitySet="yazar">
+                <ScalarProperty Name="yazarno" ColumnName="yazarno" />
+                <ScalarProperty Name="yazarad" ColumnName="yazarad" />
+                <ScalarProperty Name="yazarsoyad" ColumnName="yazarsoyad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

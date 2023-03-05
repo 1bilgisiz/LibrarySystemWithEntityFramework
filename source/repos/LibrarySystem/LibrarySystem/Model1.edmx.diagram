@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5d89f2e59cb45daa2a30c7dbffb82e4" Name="Diagram1">
+        <EntityTypeShape EntityType="DbKutuphaneSyetemModel.islem" Width="1.5" PointX="4.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbKutuphaneSyetemModel.kitap" Width="1.5" PointX="4" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbKutuphaneSyetemModel.ogrenci" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbKutuphaneSyetemModel.tur" Width="1.5" PointX="0.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbKutuphaneSyetemModel.yazar" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="DbKutuphaneSyetemModel.FK_islem_kitap" ManuallyRouted="false" />
+        <AssociationConnector Association="DbKutuphaneSyetemModel.FK_islem_ogrenci" ManuallyRouted="false" />
+        <AssociationConnector Association="DbKutuphaneSyetemModel.FK_kitap_tur" ManuallyRouted="false" />
+        <AssociationConnector Association="DbKutuphaneSyetemModel.FK_kitap_yazar" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
